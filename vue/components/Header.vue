@@ -26,20 +26,7 @@
 </template>
 
 <style scoped lang="scss">
-@mixin typography($fontSize, $fontWeight, $color, $lineHeight) {
-  font-size: $fontSize;
-  font-weight: $fontWeight;
-  color: $color;
-  line-height: $lineHeight;
-}
-
-@mixin mediaContainers($height, $width) {
-  width: $width;
-  height: $height;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+@use '../../scss/index.scss';
 
 header {
   height: 3.125rem;
@@ -61,11 +48,11 @@ header {
 }
 
 .location-pin-icon {
-  @include mediaContainers(1.5rem, 1.5rem);
+  @include index.mediaContainers(1.5rem, 1.5rem);
 }
 
 .location {
-  @include typography(1rem, 400, #fefefe, normal);
+  @include index.typography(1rem, 400, #fefefe, normal);
 }
 
 form {
@@ -81,7 +68,7 @@ form {
 }
 
 .search-icon {
-  @include mediaContainers(1.5rem, 1.5rem);
+  @include index.mediaContainers(1.5rem, 1.5rem);
 }
 
 input {
@@ -90,15 +77,15 @@ input {
   background: none;
   border: none;
   padding: 0.69rem 0rem 0.69rem 0rem;
-  @include typography(0.875rem, 400, #ededed, normal);
+  @include index.typography(0.875rem, 400, #ededed, normal);
 }
 
 input::placeholder {
-  @include typography(0.875rem, 400, #ededed, normal);
+  @include index.typography(0.875rem, 400, #ededed, normal);
 }
 
 .github-icon {
-  @include mediaContainers(2.5rem, 2.5rem);
+  @include index.mediaContainers(2.5rem, 2.5rem);
   border-radius: 2.5rem;
 }
 </style>

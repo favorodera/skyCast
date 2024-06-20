@@ -31,3 +31,18 @@ body {
     flex-direction: column;
     gap: 1.88rem;
 }
+
+@mixin typography($fontSize, $fontWeight, $color, $lineHeight) {
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+    color: $color;
+    line-height: $lineHeight;
+}
+
+@mixin mediaContainers($height, $width) {
+    width: $width;
+    height: $height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
