@@ -8,11 +8,11 @@ defineProps({
 </script>
 
 <template>
-  <div class="description-pane" :style="{ 'max-width': maxWidth + 'rem' }">
+  <section class="description-pane" :style="{ 'max-width': maxWidth + 'rem' }">
     <p>{{ firstDescription }}</p>
     <p>{{ secondDescription }}</p>
     <p>{{ thirdDescription }}</p>
-  </div>
+  </section>
 </template>
 
 <style scoped lang="scss">
