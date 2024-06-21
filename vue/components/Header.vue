@@ -1,17 +1,34 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useCurrentWeatherDataStore } from '../../stores/weather-data'
+
+let inputedLocation = ref('')
+const currentWeatherData = useCurrentWeatherDataStore()
+</script>
+
 <template>
   <header>
     <div class="location-container">
       <div class="location-pin-icon">
         <img src="../../assets/icons/location-pin.svg" alt="location-pin" loading="lazy" />
       </div>
-      <p class="location">Dhaka,Bangladesh</p>
+      <p class="location">{{ currentWeatherData.location }}</p>
     </div>
 
-    <form method="get">
+    <form
+      method="get"
+      @submit.prevent="currentWeatherData.fetchCurrentWeatherData(inputedLocation)"
+    >
       <div class="search-icon">
         <img src="../../assets/icons/search.svg" alt="search" loading="lazy" />
       </div>
-      <input type="search" name="location-input" id="location-input" placeholder="Search City" />
+      <input
+        type="search"
+        name="location-input"
+        id="location-input"
+        placeholder="Search City"
+        v-model="inputedLocation"
+      />
     </form>
 
     <a
