@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { useWeatherDataStore } from '../../stores/weather-data'
-const weatherDataStore = useWeatherDataStore()
+import { useCurrentWeatherDataStore } from '../../stores/weather-data'
+const currentWeatherData = useCurrentWeatherDataStore()
 onMounted(() => {
-  weatherDataStore.fetchWeatherData()
+  currentWeatherData.fetchCurrentWeatherData()
 })
 </script>
 
@@ -11,10 +11,10 @@ onMounted(() => {
   <div class="brief-daily-overview-container">
     <div class="date-and-time">
       <p>Friday</p>
-      <p>{{ weatherDataStore.localtime }} AM</p>
+      <p>{{ currentWeatherData.localtime }} AM</p>
     </div>
     <div class="temperature-and-weather-icon-container">
-      <p>{{ weatherDataStore.cloud }}</p>
+      <p></p>
     </div>
     <div class="brief-daily-details"></div>
   </div>

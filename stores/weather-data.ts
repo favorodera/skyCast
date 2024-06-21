@@ -11,7 +11,7 @@ interface CurrentWeatherData {
   }
 }
 
-export const useWeatherDataStore = defineStore('weather-data', () => {
+export const useCurrentWeatherDataStore = defineStore('weather-data', () => {
   const apiCurrentUrl = ref('https://api.weatherapi.com/v1/current.json')
   const apiForecastUrl = ref('http://api.weatherapi.com/v1/forecast.json')
   const currentWeatherData = ref<CurrentWeatherData | null>(null)
@@ -24,7 +24,7 @@ export const useWeatherDataStore = defineStore('weather-data', () => {
     return currentWeatherData.value?.current?.cloud || ''
   })
 
-  const fetchWeatherData = async (): Promise<CurrentWeatherData | null> => {
+  const fetchCurrentWeatherData = async (): Promise<CurrentWeatherData | null> => {
     try {
       const response = await axios.get(`${apiCurrentUrl.value}?key=${apiKey.value}&q=canada`)
       const data: CurrentWeatherData = response.data
@@ -40,7 +40,7 @@ export const useWeatherDataStore = defineStore('weather-data', () => {
 
   return {
     currentWeatherData: computed(() => currentWeatherData.value),
-    fetchWeatherData,
+    fetchCurrentWeatherData,
     localtime,
     cloud
   }
