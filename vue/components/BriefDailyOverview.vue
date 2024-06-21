@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { useCurrentWeatherDataStore } from '../../stores/weather-data'
 const currentWeatherData = useCurrentWeatherDataStore()
 </script>
@@ -14,10 +13,27 @@ const currentWeatherData = useCurrentWeatherDataStore()
       </p>
     </div>
     <div class="temperature-and-weather-icon-container">
-      <p>{{ currentWeatherData.cloud }}&deg;</p>
+      <p>{{ currentWeatherData.cloud === 0 ? 0 : currentWeatherData.cloud }}&deg;</p>
       <div><img :src="currentWeatherData.weatherConditionIcon" alt="" /></div>
     </div>
-    <div class="brief-daily-details"></div>
+    <div class="brief-daily-details">
+      <div>
+        <p>Real Feel:</p>
+        <p>{{ currentWeatherData.realFeel }}&deg;C</p>
+      </div>
+      <div>
+        <p>Sunrise:</p>
+        <p>10&deg;</p>
+      </div>
+      <div>
+        <p>Pressure:</p>
+        <p>{{ currentWeatherData.pressure }}MB</p>
+      </div>
+      <div>
+        <p>Sunset:</p>
+        <p>10&deg;</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -65,6 +81,34 @@ const currentWeatherData = useCurrentWeatherDataStore()
     img {
       width: 100%;
       height: 100%;
+    }
+  }
+}
+
+.brief-daily-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin-top: 1.375rem;
+  padding-inline: 0.88rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    flex: 1 0 5rem;
+
+    p {
+      width: max-content;
+    }
+
+    :nth-child(1) {
+      @include index.typography(0.75rem, 400, #e5e5e5, 150.547%);
+    }
+
+    :nth-child(2) {
+      @include index.typography(0.75rem, 600, #e5e5e5, 150.547%);
     }
   }
 }

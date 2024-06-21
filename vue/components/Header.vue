@@ -94,6 +94,7 @@ input {
   background: none;
   border: none;
   padding: 0.69rem 0rem 0.69rem 0rem;
+  text-transform: capitalize;
   @include index.typography(0.875rem, 400, #ededed, normal);
 }
 

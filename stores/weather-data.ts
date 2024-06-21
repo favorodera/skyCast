@@ -4,10 +4,12 @@ import { computed, ref } from 'vue'
 
 interface CurrentWeatherData {
   current: {
-    cloud: string
+    cloud: number
     condition: {
       icon: string
-    }
+    },
+    feelslike_c:number,
+    pressure_mb:number
   }
   location: {
     localtime: string
@@ -44,8 +46,20 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
     )
   })
 
+  const realFeel = computed(() => {
+    return currentWeatherData.value?.current?.feelslike_c || ''
+  })
+
+  const pressure = computed(() => {
+    return currentWeatherData.value?.current?.pressure_mb || ''
+  })
+
   const meridian = computed(() => {
-    return Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) > 11 ? 'PM' : 'AM'
+    return Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) > 11
+      ? 'PM'
+      : Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) < 12
+        ? 'AM'
+        : ''
   })
 
   const fetchCurrentWeatherData = async (
@@ -72,6 +86,8 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
     cloud,
     meridian,
     weatherConditionIcon,
-    location
+    location,
+    realFeel,
+    pressure
   }
 })
