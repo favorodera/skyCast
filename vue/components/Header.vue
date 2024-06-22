@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useCurrentWeatherDataStore } from '../../stores/weather-data'
+import { useCurrentWeatherDataStore } from '../../stores/current-weather-data'
+import { useAstronomyDataStore } from '../../stores/astronomy-data'
 
 let inputedLocation = ref('')
 const currentWeatherData = useCurrentWeatherDataStore()
+const astronomyData = useAstronomyDataStore()
 </script>
 
 <template>
@@ -17,7 +19,14 @@ const currentWeatherData = useCurrentWeatherDataStore()
 
     <form
       method="get"
-      @submit.prevent="currentWeatherData.fetchCurrentWeatherData(inputedLocation)"
+      @submit.prevent="
+        () => {
+          ;[
+            currentWeatherData.fetchCurrentWeatherData(inputedLocation),
+            astronomyData.fetchAstronomyData(inputedLocation)
+          ]
+        }
+      "
     >
       <div class="search-icon">
         <img src="../../assets/icons/search.svg" alt="search" loading="lazy" />

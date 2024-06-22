@@ -7,9 +7,9 @@ interface CurrentWeatherData {
     cloud: number
     condition: {
       icon: string
-    },
-    feelslike_c:number,
-    pressure_mb:number
+    }
+    feelslike_c: number
+    pressure_mb: number
   }
   location: {
     localtime: string
@@ -19,7 +19,6 @@ interface CurrentWeatherData {
 }
 
 const apiCurrentUrl = ref('https://api.weatherapi.com/v1/current.json')
-const apiForecastUrl = ref('http://api.weatherapi.com/v1/forecast.json')
 const apiKey = ref(import.meta.env.VITE_WEATHER_API_KEY)
 
 export const useCurrentWeatherDataStore = defineStore('current-weather-data', () => {

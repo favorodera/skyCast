@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { useCurrentWeatherDataStore } from '../../stores/weather-data'
+import { useCurrentWeatherDataStore } from '../../stores/current-weather-data'
 const currentWeatherData = useCurrentWeatherDataStore()
+import { useDaysOfTheWeekStore } from '../../stores/days-of-the-week'
+const daysOfTheWeek = useDaysOfTheWeekStore()
+import { useAstronomyDataStore } from '../../stores/astronomy-data'
+const astronomyData = useAstronomyDataStore()
 </script>
 
 <template>
   <div class="brief-daily-overview-container">
     <div class="date-and-time">
-      <p>Friday</p>
+      <p>{{ daysOfTheWeek.daysOfWeek[(daysOfTheWeek.currentDayIndex + 0) % 7] }}</p>
       <p>
         {{ currentWeatherData.localtime }}
         {{ currentWeatherData.meridian }}
@@ -23,7 +27,7 @@ const currentWeatherData = useCurrentWeatherDataStore()
       </div>
       <div>
         <p>Sunrise:</p>
-        <p>10&deg;</p>
+        <p>{{ astronomyData.sunrise }}</p>
       </div>
       <div>
         <p>Pressure:</p>
@@ -31,7 +35,7 @@ const currentWeatherData = useCurrentWeatherDataStore()
       </div>
       <div>
         <p>Sunset:</p>
-        <p>10&deg;</p>
+        <p>{{ astronomyData.sunset }}</p>
       </div>
     </div>
   </div>
@@ -88,7 +92,7 @@ const currentWeatherData = useCurrentWeatherDataStore()
 .brief-daily-details {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1.5rem;
+  gap: 0.3125rem;
   margin-top: 1.375rem;
   padding-inline: 0.88rem;
 
