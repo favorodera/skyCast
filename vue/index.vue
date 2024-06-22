@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Header from './components/Header.vue'
 import DescriptionPane from './components/DescriptionPane.vue'
-import BriefDailyAndWeeklyOverview from './components/BriefDailyAndWeeklyOverview.vue';
+import BriefDailyWeeklyAndChanceOfRainOverview from './components/BriefDailyWeeklyAndChanceOfRainOverview.vue'
 </script>
 
 <template>
@@ -12,5 +12,5 @@ import BriefDailyAndWeeklyOverview from './components/BriefDailyAndWeeklyOvervie
     thirdDescription="Chance Of Rain"
     :maxWidth="78.3125"
   />
-  <BriefDailyAndWeeklyOverview/>
+  <BriefDailyWeeklyAndChanceOfRainOverview />
 </template>

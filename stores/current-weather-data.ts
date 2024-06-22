@@ -30,11 +30,11 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
       ''
     )
   })
-  const cloud = computed(() => {
+  const currentCloud = computed(() => {
     return currentWeatherData.value?.current?.cloud || ''
   })
 
-  const weatherConditionIcon = computed(() => {
+  const currentWeatherConditionIcon = computed(() => {
     return currentWeatherData.value?.current?.condition?.icon || ''
   })
 
@@ -82,9 +82,9 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
     currentWeatherData: computed(() => currentWeatherData.value),
     fetchCurrentWeatherData,
     localtime,
-    cloud,
+    currentCloud,
     meridian,
-    weatherConditionIcon,
+    currentWeatherConditionIcon,
     location,
     realFeel,
     pressure

@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useCurrentWeatherDataStore } from '../../stores/current-weather-data'
-import { useAstronomyDataStore } from '../../stores/astronomy-data'
+import { ref } from 'vue';
+import { useAstronomyDataStore } from '../../stores/astronomy-data';
+import { useCurrentWeatherDataStore } from '../../stores/current-weather-data';
+import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data';
+const forecastWeatherData = useForecastWeatherDataStore()
 
 let inputedLocation = ref('')
 const currentWeatherData = useCurrentWeatherDataStore()
@@ -23,7 +25,8 @@ const astronomyData = useAstronomyDataStore()
         () => {
           ;[
             currentWeatherData.fetchCurrentWeatherData(inputedLocation),
-            astronomyData.fetchAstronomyData(inputedLocation)
+            astronomyData.fetchAstronomyData(inputedLocation),
+            forecastWeatherData.fetchForecastWeatherData(inputedLocation)
           ]
         }
       "
