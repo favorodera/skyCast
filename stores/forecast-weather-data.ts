@@ -5,7 +5,13 @@ import { computed, ref } from 'vue'
 interface ForecastWeatherData {
   forecast: {
     forecastday: [
-      {},
+      {
+        hour: [
+          {
+            chance_of_rain:number
+          },{},{},
+        ]
+      },
       {
         day: {
           avgtemp_c: number
@@ -112,6 +118,10 @@ export const useForecastWeatherDataStore = defineStore('forecast-weather-data', 
     return forecastWeatherData.value?.forecast?.forecastday[6]?.day?.condition?.icon || ''
   })
 
+  const midnightChanceOfRain = computed(() => {
+    return forecastWeatherData.value?.forecast?.forecastday[0]?.hour?.[0]?.chance_of_rain|| undefined
+  })
+
   const fetchForecastWeatherData = async (
     inputedLocation: string
   ): Promise<ForecastWeatherData | null> => {
@@ -144,6 +154,7 @@ export const useForecastWeatherDataStore = defineStore('forecast-weather-data', 
     fourthDayForecastWeatherConditionIcon,
     fifthDayForecastWeatherConditionIcon,
     sixthDayForecastWeatherConditionIcon,
-    seventhDayForecastWeatherConditionIcon
+    seventhDayForecastWeatherConditionIcon,
+    midnightChanceOfRain
   }
 })

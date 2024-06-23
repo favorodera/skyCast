@@ -3,6 +3,7 @@ import BriefDailyOverview from './BriefDailyOverview.vue'
 import BriefWeeklyOverview from './BriefWeeklyOverview.vue'
 import { useDaysOfTheWeekStore } from '../../stores/days-of-the-week'
 import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data'
+import ChanceOfRain from './ChanceOfRain.vue'
 const forecastWeatherData = useForecastWeatherDataStore()
 const daysOfTheWeek = useDaysOfTheWeekStore()
 </script>
@@ -52,6 +53,7 @@ const daysOfTheWeek = useDaysOfTheWeekStore()
       :forecastTemperature="forecastWeatherData.seventhDayTemperature"
       :forecastWeatherConditionIcon="forecastWeatherData.seventhDayForecastWeatherConditionIcon"
     />
+    <ChanceOfRain />
   </section>
 </template>
 
