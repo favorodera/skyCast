@@ -8,7 +8,7 @@ defineProps({
 
 <template>
   <div class="brief-weekly-overview-container">
-    <div>
+    <div class="day-of-the-week-container">
       <p>{{ dayOfTheWeek }}</p>
     </div>
     <div><img :src="forecastWeatherConditionIcon" alt="weather-icon" /></div>
@@ -30,7 +30,7 @@ defineProps({
   max-width: 6rem;
   flex: 0 0 6rem;
 
-  :nth-child(1) {
+  .day-of-the-week-container {
     width: 100%;
     height: 2.88rem;
     border-bottom: 0.0625rem solid #39393a;

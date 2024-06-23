@@ -88,7 +88,29 @@ export const useForecastWeatherDataStore = defineStore('forecast-weather-data', 
     return forecastWeatherData.value?.forecast?.forecastday[6]?.day?.avgtemp_c || undefined
   })
 
+  const secondDayForecastWeatherConditionIcon = computed(() => {
+    return forecastWeatherData.value?.forecast?.forecastday[1]?.day?.condition?.icon || ''
+  })
 
+  const thirdDayForecastWeatherConditionIcon = computed(() => {
+    return forecastWeatherData.value?.forecast?.forecastday[2]?.day?.condition?.icon || ''
+  })
+
+  const fourthDayForecastWeatherConditionIcon = computed(() => {
+    return forecastWeatherData.value?.forecast?.forecastday[3]?.day?.condition?.icon || ''
+  })
+
+  const fifthDayForecastWeatherConditionIcon = computed(() => {
+    return forecastWeatherData.value?.forecast?.forecastday[4]?.day?.condition?.icon || ''
+  })
+
+  const sixthDayForecastWeatherConditionIcon = computed(() => {
+    return forecastWeatherData.value?.forecast?.forecastday[5]?.day?.condition?.icon || ''
+  })
+
+  const seventhDayForecastWeatherConditionIcon = computed(() => {
+    return forecastWeatherData.value?.forecast?.forecastday[6]?.day?.condition?.icon || ''
+  })
 
   const fetchForecastWeatherData = async (
     inputedLocation: string
@@ -101,7 +123,6 @@ export const useForecastWeatherDataStore = defineStore('forecast-weather-data', 
       forecastWeatherData.value = data
       console.log(data)
 
-      
       return data
     } catch (error) {
       console.error('Error fetching weather data:', error)
@@ -117,6 +138,12 @@ export const useForecastWeatherDataStore = defineStore('forecast-weather-data', 
     fourthDayTemperature,
     fifthDayTemperature,
     sixthDayTemperature,
-    seventhDayTemperature
+    seventhDayTemperature,
+    secondDayForecastWeatherConditionIcon,
+    thirdDayForecastWeatherConditionIcon,
+    fourthDayForecastWeatherConditionIcon,
+    fifthDayForecastWeatherConditionIcon,
+    sixthDayForecastWeatherConditionIcon,
+    seventhDayForecastWeatherConditionIcon
   }
 })

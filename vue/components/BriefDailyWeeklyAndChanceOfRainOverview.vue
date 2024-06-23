@@ -15,42 +15,42 @@ const daysOfTheWeek = useDaysOfTheWeekStore()
         daysOfTheWeek.daysOfWeek[(daysOfTheWeek.currentDayIndex + 1) % 7].slice(0, 3).toUpperCase()
       "
       :forecastTemperature="forecastWeatherData.secondDayTemperature"
-      forecastWeatherConditionIcon=""
+      :forecastWeatherConditionIcon="forecastWeatherData.secondDayForecastWeatherConditionIcon"
     />
     <BriefWeeklyOverview
       :dayOfTheWeek="
         daysOfTheWeek.daysOfWeek[(daysOfTheWeek.currentDayIndex + 2) % 7].slice(0, 3).toUpperCase()
       "
       :forecastTemperature="forecastWeatherData.thirdDayTemperature"
-      forecastWeatherConditionIcon=""
+      :forecastWeatherConditionIcon="forecastWeatherData.thirdDayForecastWeatherConditionIcon"
     />
     <BriefWeeklyOverview
       :dayOfTheWeek="
         daysOfTheWeek.daysOfWeek[(daysOfTheWeek.currentDayIndex + 3) % 7].slice(0, 3).toUpperCase()
       "
       :forecastTemperature="forecastWeatherData.fourthDayTemperature"
-      forecastWeatherConditionIcon=""
+      :forecastWeatherConditionIcon="forecastWeatherData.fourthDayForecastWeatherConditionIcon"
     />
     <BriefWeeklyOverview
       :dayOfTheWeek="
         daysOfTheWeek.daysOfWeek[(daysOfTheWeek.currentDayIndex + 4) % 7].slice(0, 3).toUpperCase()
       "
       :forecastTemperature="forecastWeatherData.fifthDayTemperature"
-      forecastWeatherConditionIcon=""
+      :forecastWeatherConditionIcon="forecastWeatherData.fifthDayForecastWeatherConditionIcon"
     />
     <BriefWeeklyOverview
       :dayOfTheWeek="
         daysOfTheWeek.daysOfWeek[(daysOfTheWeek.currentDayIndex + 5) % 7].slice(0, 3).toUpperCase()
       "
       :forecastTemperature="forecastWeatherData.sixthDayTemperature"
-      forecastWeatherConditionIcon=""
+      :forecastWeatherConditionIcon="forecastWeatherData.sixthDayForecastWeatherConditionIcon"
     />
     <BriefWeeklyOverview
       :dayOfTheWeek="
         daysOfTheWeek.daysOfWeek[(daysOfTheWeek.currentDayIndex + 6) % 7].slice(0, 3).toUpperCase()
       "
       :forecastTemperature="forecastWeatherData.seventhDayTemperature"
-      forecastWeatherConditionIcon=""
+      :forecastWeatherConditionIcon="forecastWeatherData.seventhDayForecastWeatherConditionIcon"
     />
   </section>
 </template>

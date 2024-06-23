@@ -26,7 +26,7 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
 
   const localtime = computed(() => {
     return (
-      `${Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) - 12 === 0 ? '0' : ''}${Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) - 12}${currentWeatherData.value?.location?.localtime.slice(13)}` ||
+      `${Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) > 12 ? Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) - 12 : Number(currentWeatherData.value?.location?.localtime.slice(11, 13))}${currentWeatherData.value?.location?.localtime.slice(13)}` ||
       ''
     )
   })

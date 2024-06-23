@@ -49,6 +49,7 @@ const astronomyData = useAstronomyDataStore()
   max-width: 15.0625rem;
   height: 14.125rem;
   border-radius: 1.5625rem;
+  flex: 0 0 15.0625rem;
 }
 
 .date-and-time {
@@ -101,7 +102,7 @@ const astronomyData = useAstronomyDataStore()
     align-items: center;
     justify-content: center;
     gap: 0.1rem;
-    flex: 1 0 5rem;
+    flex: 0 0 5rem;
 
     p {
       width: max-content;
