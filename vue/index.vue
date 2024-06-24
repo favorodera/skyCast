@@ -10,7 +10,7 @@ import BriefDailyWeeklyAndChanceOfRainOverview from './components/BriefDailyWeek
     firstDescription="Today"
     secondDescription="Next 7days"
     thirdDescription="Chance Of Rain"
-    :maxWidth="78.3125"
   />
   <BriefDailyWeeklyAndChanceOfRainOverview />
+  <DescriptionPane firstDescription="Today's Overview" thirdDescription="Other Cities" />
 </template>

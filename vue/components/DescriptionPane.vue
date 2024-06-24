@@ -2,13 +2,12 @@
 defineProps({
   firstDescription: String,
   secondDescription: String,
-  thirdDescription: String,
-  maxWidth: Number
+  thirdDescription: String
 })
 </script>
 
 <template>
-  <section class="description-pane" :style="{ 'max-width': maxWidth + 'rem' }">
+  <section class="description-pane">
     <p>{{ firstDescription }}</p>
     <p>{{ secondDescription }}</p>
     <p>{{ thirdDescription }}</p>
@@ -23,6 +22,11 @@ defineProps({
   align-items: center;
   justify-content: space-between;
   height: 1.875rem;
+  max-width: 78.3125rem;
+
+  :nth-child(3) {
+    width: 9.875rem;
+  }
 }
 
 p {
