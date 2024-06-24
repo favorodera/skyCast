@@ -1,25 +1,31 @@
 <script setup lang="ts">
+import { ref, onMounted, onUpdated } from 'vue'
+import { Bar } from 'vue-chartjs'
+
 import {
-  BarElement,
-  CategoryScale,
   Chart as ChartJS,
-  Legend,
+  CategoryScale,
   LinearScale,
   Title,
-  Tooltip
-} from 'chart.js';
-import { ref } from 'vue';
-import { Bar } from 'vue-chartjs';
-import * as chartConfig from '../../ts/chartConfig';
-
+  Tooltip,
+  Legend,
+  BarElement
+} from 'chart.js'
+import * as chartConfig from '../../ts/chartConfig'
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-const chartData = ref(chartConfig)
+const chartData = ref(chartConfig.data)
+const chartOptions = ref(chartConfig.options)
+
+
+
+
+
 </script>
 
 <template>
   <div class="chance-of-rain-container">
-    <Bar :data="chartData.data" :options="chartData.options" />
+    <Bar :data="chartData" :options="chartOptions" />
   </div>
 </template>
 

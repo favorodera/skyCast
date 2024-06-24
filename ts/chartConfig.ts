@@ -1,7 +1,10 @@
 import { Chart } from 'chart.js'
 import { useForecastWeatherDataStore } from '../stores/forecast-weather-data'
-import { ref } from 'vue'
-// const forecastWeatherData = ref(useForecastWeatherDataStore())
+import { computed } from 'vue'
+
+// const chanceOfRainData = computed(() => {
+//   return [useForecastWeatherDataStore().midnightChanceOfRain]
+// })
 
 export const data = {
   labels: ['12AM', '4AM', '8AM', '12PM', '4PM', '8PM'],

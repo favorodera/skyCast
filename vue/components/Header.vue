@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useAstronomyDataStore } from '../../stores/astronomy-data';
-import { useCurrentWeatherDataStore } from '../../stores/current-weather-data';
-import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data';
+import { ref } from 'vue'
+import { useAstronomyDataStore } from '../../stores/astronomy-data'
+import { useCurrentWeatherDataStore } from '../../stores/current-weather-data'
+import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data'
 const forecastWeatherData = useForecastWeatherDataStore()
 
 let inputedLocation = ref('')
