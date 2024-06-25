@@ -17,7 +17,7 @@ interface CurrentWeatherData {
     country: string
   }
 }
-
+// Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) > 12 ? Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) - 12 :
 const apiCurrentUrl = ref('https://api.weatherapi.com/v1/current.json')
 const apiKey = ref(import.meta.env.VITE_WEATHER_API_KEY)
 
@@ -26,7 +26,7 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
 
   const localtime = computed(() => {
     return (
-      `${Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) > 12 ? Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) - 12 : Number(currentWeatherData.value?.location?.localtime.slice(11, 13))}${currentWeatherData.value?.location?.localtime.slice(13)}` ||
+      `${Number(currentWeatherData.value?.location?.localtime.slice(11, 13))}${currentWeatherData.value?.location?.localtime.slice(13)}` ||
       ''
     )
   })

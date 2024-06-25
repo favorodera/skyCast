@@ -24,9 +24,9 @@ const astronomyData = useAstronomyDataStore()
       @submit.prevent="
         () => {
           ;[
+            forecastWeatherData.fetchForecastWeatherData(inputedLocation),
             currentWeatherData.fetchCurrentWeatherData(inputedLocation),
-            astronomyData.fetchAstronomyData(inputedLocation),
-            forecastWeatherData.fetchForecastWeatherData(inputedLocation)
+            astronomyData.fetchAstronomyData(inputedLocation)
           ]
         }
       "

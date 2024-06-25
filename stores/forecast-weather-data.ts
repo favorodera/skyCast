@@ -8,8 +8,32 @@ interface ForecastWeatherData {
       {
         hour: [
           {
-            chance_of_rain:number
-          },{},{},
+            chance_of_rain: number
+            cloud: number
+          },
+          {},
+          {},
+          {},
+          { chance_of_rain: number; cloud: number },
+          {},
+          {},
+          {},
+          { chance_of_rain: number; cloud: number },
+          {},
+          {},
+          {},
+          { chance_of_rain: number; cloud: number },
+          {},
+          {},
+          {},
+          { chance_of_rain: number; cloud: number },
+          {},
+          {},
+          {},
+          { chance_of_rain: number; cloud: number },
+          {},
+          {},
+          {}
         ]
       },
       {
@@ -117,9 +141,15 @@ export const useForecastWeatherDataStore = defineStore('forecast-weather-data', 
   const seventhDayForecastWeatherConditionIcon = computed(() => {
     return forecastWeatherData.value?.forecast?.forecastday[6]?.day?.condition?.icon || ''
   })
-
-  const midnightChanceOfRain = computed(() => {
-    return forecastWeatherData.value?.forecast?.forecastday[0]?.hour?.[0]?.chance_of_rain|| undefined
+  const chanceOfRainData = computed(() => {
+    return [
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[0]?.chance_of_rain || undefined,
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[4]?.chance_of_rain || undefined,
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[8]?.chance_of_rain || undefined,
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[12]?.chance_of_rain || undefined,
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[16]?.chance_of_rain || undefined,
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[20]?.chance_of_rain || undefined
+    ]
   })
 
   const fetchForecastWeatherData = async (
@@ -155,6 +185,6 @@ export const useForecastWeatherDataStore = defineStore('forecast-weather-data', 
     fifthDayForecastWeatherConditionIcon,
     sixthDayForecastWeatherConditionIcon,
     seventhDayForecastWeatherConditionIcon,
-    midnightChanceOfRain
+    chanceOfRainData
   }
 })
