@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useAstronomyDataStore } from '../../stores/astronomy-data'
 import { useCurrentWeatherDataStore } from '../../stores/current-weather-data'
 import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data'
 const forecastWeatherData = useForecastWeatherDataStore()
-
 let inputedLocation = ref('')
 const currentWeatherData = useCurrentWeatherDataStore()
 const astronomyData = useAstronomyDataStore()
+
+onMounted(() => {
+  console.log(currentWeatherData.location)
+})
 </script>
 
 <template>
@@ -16,7 +19,9 @@ const astronomyData = useAstronomyDataStore()
       <div class="location-pin-icon">
         <img src="../../assets/icons/location-pin.svg" alt="location-pin" loading="lazy" />
       </div>
-      <p class="location">{{ currentWeatherData.location }}</p>
+      <p class="location">
+        {{ currentWeatherData.location }}
+      </p>
     </div>
 
     <form
@@ -67,7 +72,7 @@ header {
 }
 
 .location-container {
-  max-width: 11.625rem;
+  max-width: max-content;
   height: 1.5rem;
   display: flex;
   gap: 0.62rem;
