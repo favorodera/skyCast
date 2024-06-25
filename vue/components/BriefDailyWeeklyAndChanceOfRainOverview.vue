@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useDaysOfTheWeekStore } from '../../stores/days-of-the-week'
-import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data'
-import BriefDailyOverview from './BriefDailyOverview.vue'
-import BriefWeeklyOverview from './BriefWeeklyOverview.vue'
+import { useDaysOfTheWeekStore } from '../../stores/days-of-the-week';
+import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data';
+import BriefDailyOverview from './BriefDailyOverview.vue';
+import BriefWeeklyOverview from './BriefWeeklyOverview.vue';
 const forecastWeatherData = useForecastWeatherDataStore()
 const daysOfTheWeek = useDaysOfTheWeekStore()
 
-import { onBeforeUpdate, ref } from 'vue'
-import { Bar } from 'vue-chartjs'
+import { onBeforeUpdate, ref } from 'vue';
+import { Bar } from 'vue-chartjs';
 
 import {
   BarElement,
@@ -18,7 +18,7 @@ import {
   LinearScale,
   Title,
   Tooltip
-} from 'chart.js'
+} from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -29,7 +29,7 @@ const data = ref({
       label: 'Chance Of Rain (%)',
       backgroundColor: '#BAD4EB',
       borderRadius: 40,
-      data: []
+      data: [] as number[]
     }
   ]
 })
@@ -46,7 +46,7 @@ Chart.defaults.color = '#FFFFFF'
 Chart.defaults.borderColor = ''
 
 onBeforeUpdate(() => {
-  data.value.datasets[0].data = forecastWeatherData.chanceOfRainData as []
+  data.value.datasets[0].data = forecastWeatherData.chanceOfRainData
 })
 </script>
 
@@ -96,18 +96,7 @@ onBeforeUpdate(() => {
       :forecastWeatherConditionIcon="forecastWeatherData.seventhDayForecastWeatherConditionIcon"
     />
     <div class="chance-of-rain-container">
-      <Bar
-        v-if="
-          forecastWeatherData.chanceOfRainData[0] != undefined ||
-          forecastWeatherData.chanceOfRainData[1] != undefined ||
-          forecastWeatherData.chanceOfRainData[2] != undefined ||
-          forecastWeatherData.chanceOfRainData[3] != undefined ||
-          forecastWeatherData.chanceOfRainData[4] != undefined ||
-          forecastWeatherData.chanceOfRainData[5] != undefined
-        "
-        :data="data"
-        :options="options"
-      />
+      <Bar v-if="forecastWeatherData.forecastWeatherData != null" :data="data" :options="options" />
       <Bar v-else="" :data="data" :options="options" />
     </div>
   </section>

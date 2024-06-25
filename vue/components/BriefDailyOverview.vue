@@ -17,7 +17,7 @@ const astronomyData = useAstronomyDataStore()
       </p>
     </div>
     <div class="temperature-and-weather-icon-container">
-      <p>{{ currentWeatherData.currentCloud === 0 ? 0 : currentWeatherData.currentCloud }}&deg;</p>
+      <p>{{ currentWeatherData.currentCloud }}&deg;</p>
       <div><img :src="currentWeatherData.currentWeatherConditionIcon" alt="weather-icon" /></div>
     </div>
     <div class="brief-daily-details">

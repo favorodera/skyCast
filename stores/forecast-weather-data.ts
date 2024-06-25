@@ -7,30 +7,27 @@ interface ForecastWeatherData {
     forecastday: [
       {
         hour: [
-          {
-            chance_of_rain: number
-            cloud: number
-          },
+          { chance_of_rain: number },
           {},
           {},
           {},
-          { chance_of_rain: number; cloud: number },
+          { chance_of_rain: number },
           {},
           {},
           {},
-          { chance_of_rain: number; cloud: number },
+          { chance_of_rain: number },
           {},
           {},
           {},
-          { chance_of_rain: number; cloud: number },
+          { chance_of_rain: number },
           {},
           {},
           {},
-          { chance_of_rain: number; cloud: number },
+          { chance_of_rain: number },
           {},
           {},
           {},
-          { chance_of_rain: number; cloud: number },
+          { chance_of_rain: number },
           {},
           {},
           {}
@@ -95,27 +92,27 @@ export const useForecastWeatherDataStore = defineStore('forecast-weather-data', 
   const forecastWeatherData = ref<ForecastWeatherData | null>(null)
 
   const secondDayTemperature = computed(() => {
-    return forecastWeatherData.value?.forecast?.forecastday[1]?.day?.avgtemp_c || undefined
+    return forecastWeatherData.value?.forecast?.forecastday[1]?.day?.avgtemp_c || 0
   })
 
   const thirdDayTemperature = computed(() => {
-    return forecastWeatherData.value?.forecast?.forecastday[2]?.day?.avgtemp_c || undefined
+    return forecastWeatherData.value?.forecast?.forecastday[2]?.day?.avgtemp_c || 0
   })
 
   const fourthDayTemperature = computed(() => {
-    return forecastWeatherData.value?.forecast?.forecastday[3]?.day?.avgtemp_c || undefined
+    return forecastWeatherData.value?.forecast?.forecastday[3]?.day?.avgtemp_c || 0
   })
 
   const fifthDayTemperature = computed(() => {
-    return forecastWeatherData.value?.forecast?.forecastday[4]?.day?.avgtemp_c || undefined
+    return forecastWeatherData.value?.forecast?.forecastday[4]?.day?.avgtemp_c || 0
   })
 
   const sixthDayTemperature = computed(() => {
-    return forecastWeatherData.value?.forecast?.forecastday[5]?.day?.avgtemp_c || undefined
+    return forecastWeatherData.value?.forecast?.forecastday[5]?.day?.avgtemp_c || 0
   })
 
   const seventhDayTemperature = computed(() => {
-    return forecastWeatherData.value?.forecast?.forecastday[6]?.day?.avgtemp_c || undefined
+    return forecastWeatherData.value?.forecast?.forecastday[6]?.day?.avgtemp_c || 0
   })
 
   const secondDayForecastWeatherConditionIcon = computed(() => {
@@ -143,12 +140,12 @@ export const useForecastWeatherDataStore = defineStore('forecast-weather-data', 
   })
   const chanceOfRainData = computed(() => {
     return [
-      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[0]?.chance_of_rain || undefined,
-      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[4]?.chance_of_rain || undefined,
-      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[8]?.chance_of_rain || undefined,
-      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[12]?.chance_of_rain || undefined,
-      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[16]?.chance_of_rain || undefined,
-      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[20]?.chance_of_rain || undefined
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[0]?.chance_of_rain || 0,
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[4]?.chance_of_rain || 0,
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[8]?.chance_of_rain || 0,
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[12]?.chance_of_rain || 0,
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[16]?.chance_of_rain || 0,
+      forecastWeatherData.value?.forecast?.forecastday[0]?.hour[20]?.chance_of_rain || 0
     ]
   })
 

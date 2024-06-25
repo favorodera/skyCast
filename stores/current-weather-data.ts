@@ -17,7 +17,7 @@ interface CurrentWeatherData {
     country: string
   }
 }
-// Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) > 12 ? Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) - 12 :
+
 const apiCurrentUrl = ref('https://api.weatherapi.com/v1/current.json')
 const apiKey = ref(import.meta.env.VITE_WEATHER_API_KEY)
 
@@ -26,12 +26,12 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
 
   const localtime = computed(() => {
     return (
-      `${Number(currentWeatherData.value?.location?.localtime.slice(11, 13))}${currentWeatherData.value?.location?.localtime.slice(13)}` ||
+      `${Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) > 12 ? Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) - 12 : Number(currentWeatherData.value?.location?.localtime.slice(11, 13))}${currentWeatherData.value?.location?.localtime.slice(13)}` ||
       ''
     )
   })
   const currentCloud = computed(() => {
-    return currentWeatherData.value?.current?.cloud || ''
+    return currentWeatherData.value?.current?.cloud || 0
   })
 
   const currentWeatherConditionIcon = computed(() => {
@@ -46,11 +46,11 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
   })
 
   const realFeel = computed(() => {
-    return currentWeatherData.value?.current?.feelslike_c || ''
+    return currentWeatherData.value?.current?.feelslike_c || 0
   })
 
   const pressure = computed(() => {
-    return currentWeatherData.value?.current?.pressure_mb || ''
+    return currentWeatherData.value?.current?.pressure_mb || 0
   })
 
   const meridian = computed(() => {
