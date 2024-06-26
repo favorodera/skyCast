@@ -17,6 +17,8 @@ const apiKey = ref(import.meta.env.VITE_WEATHER_API_KEY)
 export const useAstronomyDataStore = defineStore('astronomy-data', () => {
   const astronomyData = ref<AstronomyData | null>(null)
 
+  const astronomyDataState = ref('Awaiting')
+
   const sunrise = computed(() => {
     return astronomyData.value?.astronomy?.astro?.sunrise || ''
   })
@@ -26,16 +28,17 @@ export const useAstronomyDataStore = defineStore('astronomy-data', () => {
   })
 
   const fetchAstronomyData = async (inputedLocation: string): Promise<AstronomyData | null> => {
+    astronomyDataState.value = 'Awaiting'
     try {
       const response = await axios.get(
         `${apiAstronomyUrl.value}?key=${apiKey.value}&q=${inputedLocation}`
       )
       const data: AstronomyData = response.data
       astronomyData.value = data
-      console.log(data)
+      astronomyDataState.value = 'Success'
       return data
     } catch (error) {
-      console.error('Error fetching weather data:', error)
+      astronomyDataState.value = 'Error'
       return null
     }
   }
@@ -44,6 +47,7 @@ export const useAstronomyDataStore = defineStore('astronomy-data', () => {
     astronomyData: computed(() => astronomyData.value),
     fetchAstronomyData,
     sunrise,
-    sunset
+    sunset,
+    astronomyDataState
   }
 })

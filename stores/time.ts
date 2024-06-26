@@ -11,6 +11,8 @@ const apiTimeUrl = ref('http://worldtimeapi.org/api/timezone')
 export const useTimeStore = defineStore('time', () => {
   const time = ref<Time | null>(null)
 
+  const timeDataState = ref('Awaiting')
+
   const rawTime = computed(() => {
     return time.value?.datetime?.slice(11, 16)
   })
@@ -35,14 +37,15 @@ export const useTimeStore = defineStore('time', () => {
   })
 
   const fetchTime = async (TimeZone: string): Promise<Time | null> => {
+    timeDataState.value = 'Awaiting'
     try {
       const response = await axios.get(`${apiTimeUrl.value}/${TimeZone}`)
       const data: Time = response.data
       time.value = data
-      console.log(data)
+      timeDataState.value = 'Success'
       return data
     } catch (error) {
-      console.error('Error fetching weather data:', error)
+      timeDataState.value = 'Error'
       return null
     }
   }
@@ -52,6 +55,7 @@ export const useTimeStore = defineStore('time', () => {
     fetchTime,
     rawTime,
     meridian,
-    processedTime
+    processedTime,
+    timeDataState
   }
 })

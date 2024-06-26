@@ -1,13 +1,24 @@
 <script setup lang="ts">
 defineProps({
-    Height:String,
-    Width:String,
-    BorderRadius:String
+  HeightRem: String,
+  WidthRem: String,
+  BorderRadiusRem: String,
+  HeightPercent: String,
+  WidthPercent: String,
+  BorderRadiusPercent: String,
+  
 })
 </script>
 
 <template>
-  <div class="skeleton" :style="{height:Height + 'rem', width: Width + 'rem', borderRadius:BorderRadius + 'rem'}"></div>
+  <div
+    class="skeleton"
+    :style="{
+      height: HeightRem + 'rem' || HeightPercent + '%',
+      width: WidthRem + 'rem' || WidthPercent + '%',
+      borderRadius: BorderRadiusRem + 'rem' || BorderRadiusPercent + '%'
+    }"
+  ></div>
 </template>
 
 <style scoped lang="scss">

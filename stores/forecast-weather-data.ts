@@ -91,6 +91,8 @@ const apiKey = ref(import.meta.env.VITE_WEATHER_API_KEY)
 export const useForecastWeatherDataStore = defineStore('forecast-weather-data', () => {
   const forecastWeatherData = ref<ForecastWeatherData | null>(null)
 
+  const forecastWeatherDataState = ref('Awaiting')
+
   const secondDayTemperature = computed(() => {
     return forecastWeatherData.value?.forecast?.forecastday[1]?.day?.avgtemp_c || 0
   })
@@ -152,17 +154,18 @@ export const useForecastWeatherDataStore = defineStore('forecast-weather-data', 
   const fetchForecastWeatherData = async (
     inputedLocation: string
   ): Promise<ForecastWeatherData | null> => {
+    forecastWeatherDataState.value = 'Awaiting'
     try {
       const response = await axios.get(
         `${apiForecastUrl.value}?key=${apiKey.value}&q=${inputedLocation}&days=7`
       )
       const data: ForecastWeatherData = response.data
       forecastWeatherData.value = data
-      console.log(data)
+      forecastWeatherDataState.value = 'Success'
 
       return data
     } catch (error) {
-      console.error('Error fetching weather data:', error)
+      forecastWeatherDataState.value = 'Error'
       return null
     }
   }
@@ -182,6 +185,7 @@ export const useForecastWeatherDataStore = defineStore('forecast-weather-data', 
     fifthDayForecastWeatherConditionIcon,
     sixthDayForecastWeatherConditionIcon,
     seventhDayForecastWeatherConditionIcon,
-    chanceOfRainData
+    chanceOfRainData,
+    forecastWeatherDataState
   }
 })

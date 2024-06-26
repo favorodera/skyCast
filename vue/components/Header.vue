@@ -5,7 +5,6 @@ import { useCurrentWeatherDataStore } from '../../stores/current-weather-data'
 import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data'
 import Skeleton from './Skeleton.vue'
 
-
 const forecastWeatherData = useForecastWeatherDataStore()
 let inputedLocation = ref('')
 const currentWeatherData = useCurrentWeatherDataStore()
@@ -18,12 +17,12 @@ const astronomyData = useAstronomyDataStore()
       <div class="location-pin-icon">
         <img src="../../assets/icons/location-pin.svg" alt="location-pin" loading="lazy" />
       </div>
-      <div v-if="currentWeatherData.currentWeatherData?.location.country === undefined">
-        <Skeleton Height="1.5" Width="11.625" BorderRadius="0.5" />
-      </div>
-      <p class="location" v-else>
+      <p class="location" v-if="currentWeatherData.currentWeatherDataState === 'Success'">
         {{ currentWeatherData.location }}
       </p>
+      <div v-else>
+        <Skeleton Height="1.5" Width="11.625" BorderRadius="0.5" />
+      </div>
     </div>
 
     <form
@@ -33,7 +32,7 @@ const astronomyData = useAstronomyDataStore()
           ;[
             currentWeatherData.fetchCurrentWeatherData(inputedLocation),
             forecastWeatherData.fetchForecastWeatherData(inputedLocation),
-            astronomyData.fetchAstronomyData(inputedLocation),
+            astronomyData.fetchAstronomyData(inputedLocation)
           ]
         }
       "

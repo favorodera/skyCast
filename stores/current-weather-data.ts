@@ -24,6 +24,8 @@ const apiKey = ref(import.meta.env.VITE_WEATHER_API_KEY)
 export const useCurrentWeatherDataStore = defineStore('current-weather-data', () => {
   const currentWeatherData = ref<CurrentWeatherData | null>(null)
 
+  const currentWeatherDataState = ref('Awaiting')
+
   const currentCloud = computed(() => {
     return currentWeatherData.value?.current?.cloud || 0
   })
@@ -50,16 +52,17 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
   const fetchCurrentWeatherData = async (
     inputedLocation: string
   ): Promise<CurrentWeatherData | null> => {
+    currentWeatherDataState.value = 'Awaiting'
     try {
       const response = await axios.get(
         `${apiCurrentUrl.value}?key=${apiKey.value}&q=${inputedLocation}`
       )
       const data: CurrentWeatherData = response.data
       currentWeatherData.value = data
-      console.log(data)
+      currentWeatherDataState.value = 'Success'
       return data
     } catch (error) {
-      console.error('Error fetching weather data:', error)
+      currentWeatherDataState.value = 'Error'
       return null
     }
   }
@@ -71,6 +74,7 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
     currentWeatherConditionIcon,
     location,
     realFeel,
-    pressure
+    pressure,
+    currentWeatherDataState
   }
 })
