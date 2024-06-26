@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { useAstronomyDataStore } from '../../stores/astronomy-data'
 import { useCurrentWeatherDataStore } from '../../stores/current-weather-data'
 import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data'
+import Skeleton from './Skeleton.vue'
+
+
 const forecastWeatherData = useForecastWeatherDataStore()
 let inputedLocation = ref('')
 const currentWeatherData = useCurrentWeatherDataStore()
 const astronomyData = useAstronomyDataStore()
-
-onMounted(() => {
-  console.log(currentWeatherData.location)
-})
 </script>
 
 <template>
@@ -19,7 +18,10 @@ onMounted(() => {
       <div class="location-pin-icon">
         <img src="../../assets/icons/location-pin.svg" alt="location-pin" loading="lazy" />
       </div>
-      <p class="location">
+      <div v-if="currentWeatherData.currentWeatherData?.location.country === undefined">
+        <Skeleton Height="1.5" Width="11.625" BorderRadius="0.5" />
+      </div>
+      <p class="location" v-else>
         {{ currentWeatherData.location }}
       </p>
     </div>
@@ -29,9 +31,9 @@ onMounted(() => {
       @submit.prevent="
         () => {
           ;[
-            forecastWeatherData.fetchForecastWeatherData(inputedLocation),
             currentWeatherData.fetchCurrentWeatherData(inputedLocation),
-            astronomyData.fetchAstronomyData(inputedLocation)
+            forecastWeatherData.fetchForecastWeatherData(inputedLocation),
+            astronomyData.fetchAstronomyData(inputedLocation),
           ]
         }
       "

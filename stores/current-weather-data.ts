@@ -12,7 +12,7 @@ interface CurrentWeatherData {
     pressure_mb: number
   }
   location: {
-    localtime: string
+    tz_id: string
     name: string
     country: string
   }
@@ -24,12 +24,6 @@ const apiKey = ref(import.meta.env.VITE_WEATHER_API_KEY)
 export const useCurrentWeatherDataStore = defineStore('current-weather-data', () => {
   const currentWeatherData = ref<CurrentWeatherData | null>(null)
 
-  const localtime = computed(() => {
-    return (
-      `${Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) > 12 ? Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) - 12 : Number(currentWeatherData.value?.location?.localtime.slice(11, 13))}${currentWeatherData.value?.location?.localtime.slice(13)}` ||
-      ''
-    )
-  })
   const currentCloud = computed(() => {
     return currentWeatherData.value?.current?.cloud || 0
   })
@@ -53,14 +47,6 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
     return currentWeatherData.value?.current?.pressure_mb || 0
   })
 
-  const meridian = computed(() => {
-    return Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) > 11
-      ? 'PM'
-      : Number(currentWeatherData.value?.location?.localtime.slice(11, 13)) < 12
-        ? 'AM'
-        : ''
-  })
-
   const fetchCurrentWeatherData = async (
     inputedLocation: string
   ): Promise<CurrentWeatherData | null> => {
@@ -81,9 +67,7 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
   return {
     currentWeatherData: computed(() => currentWeatherData.value),
     fetchCurrentWeatherData,
-    localtime,
     currentCloud,
-    meridian,
     currentWeatherConditionIcon,
     location,
     realFeel,

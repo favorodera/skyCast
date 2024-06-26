@@ -4,7 +4,17 @@ const currentWeatherData = useCurrentWeatherDataStore()
 import { useDaysOfTheWeekStore } from '../../stores/days-of-the-week'
 const daysOfTheWeek = useDaysOfTheWeekStore()
 import { useAstronomyDataStore } from '../../stores/astronomy-data'
+import { onUpdated } from 'vue'
 const astronomyData = useAstronomyDataStore()
+import { useTimeStore } from '../../stores/time'
+const time = useTimeStore()
+
+onUpdated(() => {
+  time.fetchTime(currentWeatherData.currentWeatherData?.location?.tz_id as string)
+  if (time.time?.datetime != undefined) {
+    return
+  }
+})
 </script>
 
 <template>
@@ -12,8 +22,8 @@ const astronomyData = useAstronomyDataStore()
     <div class="date-and-time">
       <p>{{ daysOfTheWeek.daysOfWeek[(daysOfTheWeek.currentDayIndex + 0) % 7] }}</p>
       <p>
-        {{ currentWeatherData.localtime }}
-        {{ currentWeatherData.meridian }}
+        {{ time?.processedTime }}
+        {{ time?.meridian }}
       </p>
     </div>
     <div class="temperature-and-weather-icon-container">
