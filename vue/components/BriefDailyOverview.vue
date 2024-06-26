@@ -11,7 +11,9 @@ const time = useTimeStore()
 import Skeleton from './Skeleton.vue'
 
 onUpdated(() => {
-  time.fetchTime(currentWeatherData.currentWeatherData?.location?.tz_id as string)
+  if (currentWeatherData.currentWeatherDataState === 'Success' && time.timeDataState != 'Success') {
+    time.fetchTime(currentWeatherData.currentWeatherData?.location?.tz_id as string)
+  }
   if (time.timeDataState === 'Success') {
     return
   }
@@ -19,14 +21,16 @@ onUpdated(() => {
 </script>
 
 <template>
-  <div class="brief-daily-overview-container">
+  <div
+    class="brief-daily-overview-container"
+    v-if="currentWeatherData.currentWeatherDataState === 'Success'"
+  >
     <div class="date-and-time">
       <p>{{ daysOfTheWeek.daysOfWeek[(daysOfTheWeek.currentDayIndex + 0) % 7] }}</p>
       <p v-if="time.timeDataState === 'Success'">
         {{ time?.processedTime }}
         {{ time?.meridian }}
       </p>
-      <div v-else><Skeleton Height="3.5" Width="2" /></div>
     </div>
     <div class="temperature-and-weather-icon-container">
       <p>{{ currentWeatherData.currentCloud }}&deg;</p>
@@ -51,6 +55,7 @@ onUpdated(() => {
       </div>
     </div>
   </div>
+  <div v-else><Skeleton HeightRem="14.125" WidthRem="15.0625" BorderRadiusRem="1.5625" /></div>
 </template>
 
 <style scoped lang="scss">

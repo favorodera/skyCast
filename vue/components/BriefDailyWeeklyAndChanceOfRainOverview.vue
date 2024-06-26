@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useDaysOfTheWeekStore } from '../../stores/days-of-the-week';
-import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data';
-import BriefDailyOverview from './BriefDailyOverview.vue';
-import BriefWeeklyOverview from './BriefWeeklyOverview.vue';
+import { useDaysOfTheWeekStore } from '../../stores/days-of-the-week'
+import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data'
+import BriefDailyOverview from './BriefDailyOverview.vue'
+import BriefWeeklyOverview from './BriefWeeklyOverview.vue'
 const forecastWeatherData = useForecastWeatherDataStore()
 const daysOfTheWeek = useDaysOfTheWeekStore()
 
-import { onBeforeUpdate, ref } from 'vue';
-import { Bar } from 'vue-chartjs';
+import { onBeforeUpdate, ref } from 'vue'
+import { Bar } from 'vue-chartjs'
 
 import {
   BarElement,
@@ -18,7 +18,8 @@ import {
   LinearScale,
   Title,
   Tooltip
-} from 'chart.js';
+} from 'chart.js'
+import Skeleton from './Skeleton.vue'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -95,10 +96,17 @@ onBeforeUpdate(() => {
       :forecastTemperature="forecastWeatherData.seventhDayTemperature"
       :forecastWeatherConditionIcon="forecastWeatherData.seventhDayForecastWeatherConditionIcon"
     />
-    <div class="chance-of-rain-container">
-      <Bar v-if="forecastWeatherData.forecastWeatherData != null" :data="data" :options="options" />
-      <Bar v-else="" :data="data" :options="options" />
+    <div
+      class="chance-of-rain-container"
+      v-if="forecastWeatherData.forecastWeatherDataState === 'Success'"
+    >
+      <Bar
+        v-if="forecastWeatherData.forecastWeatherDataState === 'Success'"
+        :data="data"
+        :options="options"
+      />
     </div>
+    <div v-else><Skeleton HeightRem="14.125" WidthRem="18.5625" BorderRadiusRem="1.5625" /></div>
   </section>
 </template>
 

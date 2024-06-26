@@ -6,7 +6,10 @@ defineProps({
   HeightPercent: String,
   WidthPercent: String,
   BorderRadiusPercent: String,
-  
+  MaxHeightRem: String,
+  MaxWidthRem: String,
+  MaxHeightPercent: String,
+  MaxWidthPercent: String,
 })
 </script>
 
@@ -15,7 +18,9 @@ defineProps({
     class="skeleton"
     :style="{
       height: HeightRem + 'rem' || HeightPercent + '%',
+      maxHeight: MaxHeightRem + 'rem' || MaxHeightPercent + '%',
       width: WidthRem + 'rem' || WidthPercent + '%',
+      maxWidth: MaxWidthRem + 'rem' || MaxWidthPercent + '%',
       borderRadius: BorderRadiusRem + 'rem' || BorderRadiusPercent + '%'
     }"
   ></div>

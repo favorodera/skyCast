@@ -21,7 +21,7 @@ const astronomyData = useAstronomyDataStore()
         {{ currentWeatherData.location }}
       </p>
       <div v-else>
-        <Skeleton Height="1.5" Width="11.625" BorderRadius="0.5" />
+        <Skeleton HeightRem="1.5" WidthRem="11.625" BorderRadiusRem="0.5" />
       </div>
     </div>
 

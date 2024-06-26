@@ -4,16 +4,24 @@ defineProps({
   forecastTemperature: Number,
   forecastWeatherConditionIcon: String
 })
+
+import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data'
+import Skeleton from './Skeleton.vue'
+const forecastWeatherData = useForecastWeatherDataStore()
 </script>
 
 <template>
-  <div class="brief-weekly-overview-container">
+  <div
+    class="brief-weekly-overview-container"
+    v-if="forecastWeatherData.forecastWeatherDataState === 'Success'"
+  >
     <div class="day-of-the-week-container">
       <p>{{ dayOfTheWeek }}</p>
     </div>
     <div><img :src="forecastWeatherConditionIcon" alt="weather-icon" /></div>
     <p>{{ forecastTemperature }}&deg;</p>
   </div>
+  <div v-else><Skeleton HeightRem="14.125" WidthRem="6" BorderRadiusRem="1.875" /></div>
 </template>
 
 <style scoped lang="scss">
