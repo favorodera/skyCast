@@ -33,7 +33,6 @@ const currentWeatherData = useCurrentWeatherDataStore()
         ><div class="data-icon"><img src="../../assets/icons/eye.svg" alt="eye" /></div
       ></MainDailyWeatherData>
     </div>
-
     <GlobalMap/>
   </section>
 </template>

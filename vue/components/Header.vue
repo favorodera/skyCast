@@ -4,11 +4,13 @@ import { useAstronomyDataStore } from '../../stores/astronomy-data'
 import { useCurrentWeatherDataStore } from '../../stores/current-weather-data'
 import { useForecastWeatherDataStore } from '../../stores/forecast-weather-data'
 import Skeleton from './Skeleton.vue'
+import { useOtherCitiesCurrentWeatherDataStore } from '../../stores/other-cities-current-weather-data'
 
 const forecastWeatherData = useForecastWeatherDataStore()
 let inputedLocation = ref('')
 const currentWeatherData = useCurrentWeatherDataStore()
 const astronomyData = useAstronomyDataStore()
+const otherCitiesCurrentWeatherData = useOtherCitiesCurrentWeatherDataStore()
 </script>
 
 <template>
@@ -32,7 +34,8 @@ const astronomyData = useAstronomyDataStore()
           ;[
             currentWeatherData.fetchCurrentWeatherData(inputedLocation),
             forecastWeatherData.fetchForecastWeatherData(inputedLocation),
-            astronomyData.fetchAstronomyData(inputedLocation)
+            astronomyData.fetchAstronomyData(inputedLocation),
+            otherCitiesCurrentWeatherData.fetchOtherCitiesWeatherData()
           ]
         }
       "
