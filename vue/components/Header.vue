@@ -120,6 +120,10 @@ input::placeholder {
   @include index.typography(0.875rem, 400, #ededed, normal);
 }
 
+input::-webkit-search-cancel-button {
+  display: none;
+}
+
 .github-icon {
   @include index.mediaContainers(2.5rem, 2.5rem);
   border-radius: 2.5rem;

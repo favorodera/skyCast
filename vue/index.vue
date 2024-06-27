@@ -2,7 +2,7 @@
 import Header from './components/Header.vue'
 import DescriptionPane from './components/DescriptionPane.vue'
 import BriefDailyWeeklyAndChanceOfRainOverview from './components/BriefDailyWeeklyAndChanceOfRainOverview.vue'
-import MainDailyOverviewAndOtherCities from './components/MainDailyOverviewAndOtherCities.vue';
+import MainDailyOverviewGlobalMapAndOtherCities from './components/MainDailyOverviewGlobalMapAndOtherCities.vue'
 </script>
 
 <template>
@@ -14,5 +14,5 @@ import MainDailyOverviewAndOtherCities from './components/MainDailyOverviewAndOt
   />
   <BriefDailyWeeklyAndChanceOfRainOverview />
   <DescriptionPane firstDescription="Today's Overview" thirdDescription="Other Cities" />
-  <MainDailyOverviewAndOtherCities />
+  <MainDailyOverviewGlobalMapAndOtherCities />
 </template>
