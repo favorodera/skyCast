@@ -5,6 +5,11 @@ import { computed, ref } from 'vue'
 interface CurrentWeatherData {
   current: {
     cloud: number
+    wind_kph: number
+    wind_dir: string
+    uv: number
+    vis_km: number
+    humidity: number
     condition: {
       icon: string
     }
@@ -28,6 +33,26 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
 
   const currentCloud = computed(() => {
     return currentWeatherData.value?.current?.cloud || 0
+  })
+
+  const windStatus = computed(() => {
+    return currentWeatherData.value?.current?.wind_kph || 0
+  })
+
+  const humidity = computed(() => {
+    return currentWeatherData.value?.current?.humidity || 0
+  })
+
+  const visibility = computed(() => {
+    return currentWeatherData.value?.current?.vis_km || 0
+  })
+
+  const uvIndex = computed(() => {
+    return currentWeatherData.value?.current?.uv || 0
+  })
+
+  const windDirection = computed(() => {
+    return currentWeatherData.value?.current?.wind_dir || ''
   })
 
   const currentWeatherConditionIcon = computed(() => {
@@ -60,6 +85,8 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
       const data: CurrentWeatherData = response.data
       currentWeatherData.value = data
       currentWeatherDataState.value = 'Success'
+      console.log(data)
+
       return data
     } catch (error) {
       currentWeatherDataState.value = 'Error'
@@ -75,6 +102,11 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
     location,
     realFeel,
     pressure,
-    currentWeatherDataState
+    currentWeatherDataState,
+    windStatus,
+    windDirection,
+    visibility,
+    humidity,
+    uvIndex
   }
 })

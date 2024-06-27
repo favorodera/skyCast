@@ -1,19 +1,23 @@
 <script setup lang="ts">
 defineProps({
   dataHeader: String,
-  dataValue: String || Number,
+  dataValue: Number,
   dataUnit: String
 })
+import { useCurrentWeatherDataStore } from '../../stores/current-weather-data'
+const currentWeatherData = useCurrentWeatherDataStore()
+import Skeleton from './Skeleton.vue'
 </script>
 
 <template>
-  <div class="main-daily-data">
-    <p>{{ dataHeader }}</p>
+  <div class="main-daily-data" v-if="currentWeatherData.currentWeatherDataState === 'Success'">
+    <p class="data-header">{{ dataHeader }}</p>
     <slot />
-    <p>
+    <p class="data-value">
       {{ dataValue }}<span>{{ dataUnit }}</span>
     </p>
   </div>
+  <div v-else><Skeleton WidthRem="18.125" HeightRem="15.3125" BorderRadiusRem="0.9375" /></div>
 </template>
 
 <style scoped lang="scss">
@@ -29,19 +33,20 @@ defineProps({
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
 
-  :nth-child(1) {
-    @include index.typography(1rem, 500, #ffffff, normal);
-    align-self: flex-start;
-    margin: 1.62rem 0rem  0rem 0.88rem;
-  }
-  :nth-child(2) {
-    @include index.typography(1rem, 600, #ffffff, normal);
-    margin-bottom: 1.62rem ;
+.data-header {
+  @include index.typography(1rem, 500, #ffffff, normal);
+  align-self: flex-start;
+  margin: 1.62rem 0rem 0rem 0.88rem;
+}
 
-    span {
-      @include index.typography(0.875rem, 400, #ffffff, normal);
-    }
+.data-value {
+  @include index.typography(1rem, 600, #ffffff, normal);
+  margin-bottom: 1.62rem;
+
+  span {
+    @include index.typography(0.875rem, 400, #ffffff, normal);
   }
 }
 </style>
