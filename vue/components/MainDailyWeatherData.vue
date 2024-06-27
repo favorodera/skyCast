@@ -14,7 +14,7 @@ import Skeleton from './Skeleton.vue'
     <p class="data-header">{{ dataHeader }}</p>
     <slot />
     <p class="data-value">
-      {{ dataValue }}<span>{{ dataUnit }}</span>
+      {{ dataValue }} <span>{{ dataUnit }}</span>
     </p>
   </div>
   <div v-else><Skeleton WidthRem="18.125" HeightRem="15.3125" BorderRadiusRem="0.9375" /></div>
