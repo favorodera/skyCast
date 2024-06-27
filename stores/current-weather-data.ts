@@ -85,7 +85,6 @@ export const useCurrentWeatherDataStore = defineStore('current-weather-data', ()
       const data: CurrentWeatherData = response.data
       currentWeatherData.value = data
       currentWeatherDataState.value = 'Success'
-      console.log(data)
 
       return data
     } catch (error) {
