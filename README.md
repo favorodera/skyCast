@@ -1,6 +1,6 @@
 # Sky Cast - A Weather Dashboard
 ***USE LARGE SCREENS FOR BEST EXPERIENCE***
-
+![Sky Cast Screenshot](./assets/images/preview.png)
 SkyCast is a user-friendly weather dashboard that provides real-time weather information for your desired locations. It displays current weather conditions, forecasts, and other relevant details in a visually appealing interface.
 
 ###
