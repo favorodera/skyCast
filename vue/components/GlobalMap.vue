@@ -1,7 +1,7 @@
 <template>
   <div class="global-map">
     <div class="description">
-      <p>Explore global map of wind weather and ocean condition</p>
+      <p>Explore global map of wind, weather and ocean condition</p>
     </div>
     <a href="https://www.windy.com" target="_blank" rel="noopener noreferrer"
       ><button type="button">GET STARTED</button></a

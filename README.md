@@ -1,39 +1,50 @@
-# skyCast
+# Sky Cast - A Weather Dashboard
+***USE LARGE SCREENS FOR BEST EXPERIENCE***
 
-This template should help get you started developing with Vue 3 in Vite.
+SkyCast is a user-friendly weather dashboard that provides real-time weather information for your desired locations. It displays current weather conditions, forecasts, and other relevant details in a visually appealing interface.
 
-## Recommended IDE Setup
+###
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+###
 
-## Type Support for `.vue` Imports in TS
+## Features:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- Search for weather information by city name.
+- View current weather conditions, including temperature, humidity, wind speed, chance of rain, feels like, and weather description.
+- Access extended forecast for upcoming days.
+- Access wind, weather and ocean condition global map.
 
-## Customize configuration
+###
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+###
 
-## Project Setup
+## Getting Started Locally:
 
-```sh
+- Clone the repository:
+
+```bash
+git clone https://github.com/favorodera/skyCast.git
+```
+
+- Install dependencies:
+
+```bash
 pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+- Start the development server:
 
-```sh
+```bash
 pnpm dev
 ```
 
-### Type-Check, Compile and Minify for Production
+###
 
-```sh
-pnpm build
-```
+###
 
-### Lint with [ESLint](https://eslint.org/)
+## Contribute and Share:
 
-```sh
-pnpm lint
-```
+- SkyCast is an open-source project! Feel free to contribute by submitting pull requests.
+- Report any bugs or suggest improvements through GitHub issues.
+
+###
