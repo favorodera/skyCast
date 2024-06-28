@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import MainDailyWeatherData from './MainDailyWeatherData.vue'
 import { useCurrentWeatherDataStore } from '../../stores/current-weather-data'
-import GlobalMap from './GlobalMap.vue';
+import GlobalMap from './GlobalMap.vue'
 const currentWeatherData = useCurrentWeatherDataStore()
+import OtherCities from './OtherCities.vue'
 </script>
 
 <template>
@@ -33,7 +34,8 @@ const currentWeatherData = useCurrentWeatherDataStore()
         ><div class="data-icon"><img src="../../assets/icons/eye.svg" alt="eye" /></div
       ></MainDailyWeatherData>
     </div>
-    <GlobalMap/>
+    <GlobalMap />
+    <OtherCities />
   </section>
 </template>
 

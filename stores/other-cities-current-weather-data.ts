@@ -85,6 +85,24 @@ export const useOtherCitiesCurrentWeatherDataStore = defineStore(
       ]
     })
 
+    const weatherConditionIcon = computed(() => {
+      return [
+        istanbulWeatherData.value?.current?.condition?.icon,
+        londonWeatherData.value?.current?.condition?.icon,
+        parisWeatherData.value?.current?.condition?.icon,
+        newYorkCityWeatherData.value?.current?.condition?.icon
+      ]
+    })
+
+    const weatherCondition = computed(() => {
+      return [
+        istanbulWeatherData.value?.current?.condition?.text,
+        londonWeatherData.value?.current?.condition?.text,
+        parisWeatherData.value?.current?.condition?.text,
+        newYorkCityWeatherData.value?.current?.condition?.text
+      ]
+    })
+
     const fetchOtherCitiesWeatherData = async (): Promise<
       (Istanbul | null) & (null | London) & (null | Paris) & (null | NYC)
     > => {
@@ -109,7 +127,7 @@ export const useOtherCitiesCurrentWeatherDataStore = defineStore(
         parisWeatherData.value = parisData
         newYorkCityWeatherData.value = newYorkData
         otherCitiesCurrentWeatherDataState.value = 'Success'
-        console.log(istanbulData, newYorkData)
+
         return istanbulData && londonData && parisData && newYorkData
       } catch (error) {
         otherCitiesCurrentWeatherDataState.value = 'Error'
@@ -124,7 +142,10 @@ export const useOtherCitiesCurrentWeatherDataStore = defineStore(
       newYorkCityWeatherData: computed(() => newYorkCityWeatherData.value),
       fetchOtherCitiesWeatherData,
       country,
-      city
+      city,
+      weatherCondition,
+      weatherConditionIcon,
+      otherCitiesCurrentWeatherDataState
     }
   }
 )
