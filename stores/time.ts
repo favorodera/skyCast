@@ -6,7 +6,7 @@ interface Time {
   datetime: string
 }
 
-const apiTimeUrl = ref('http://worldtimeapi.org/api/timezone')
+const apiTimeUrl = ref('https://worldtimeapi.org/api/timezone')
 
 export const useTimeStore = defineStore('time', () => {
   const time = ref<Time | null>(null)
